@@ -1,0 +1,40 @@
+graph file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/tmp5028815567782921720.d/scdbg-4331614945005869097-graphFile
+Loaded 14000 bytes from file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/b.pdf
+Memory monitor enabled..
+Memory monitor for dlls enabled..
+Initilization Complete..
+Execution starts at file offset c797 Opcodes: 05 8b c6 9e da 0d 0a 65 6e 64 
+40d797	058BC69EDA                      add eax,0xda9ec68b
+40d79c	0D0A656E64                      or eax,0x646e650a
+40d7a1	7374                            jnc 0x40d817
+40d7a3	7265                            jc 0x40d80a
+40d7a5	61                              popa 
+
+Dump mode Active...
+Max Steps: 2000000
+Using base offset: 0x401000
+
+
+Stepcount 2000001
+Primary memory: Reading 0x14000 bytes from 0x401000
+Scanning for changes...
+No changes found in primary memory, dump not created.
+
+Memory Monitor Log:
+copying vertexes
+optimizing graph
+vertex 0x95e79d8
+going forwards from 0x95e79d8
+ -> vertex 0x980e970
+ -> vertex 0x980eac8
+ -> vertex 0x980ebc8
+copying edges for 0x980ebc8
+ -> 0x9811500
+vertex 0x980ed38
+going forwards from 0x980ed38
+copying edges for 0x980ed38
+ -> 0x9811600
+vertex 0x980ee68
+going forwards from 0x980ee68
+copying edges for 0x980ee68
+ -> 0x9811500

@@ -1,0 +1,14 @@
+Loaded 14000 bytes from file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/b.pdf
+Initilization Complete..
+Max Steps: 2000000
+Using base offset: 0x401000
+[33;1m/getpc mode did not detect any shellcode in the file
+[0m[33;1mGoing into brute force mode...
+[0m0) offset=0xb4cf       steps=MAX    final_eip=40c538      
+1) offset=0xc16d       steps=MAX    final_eip=40d1e7      
+2) offset=0xc78d       steps=MAX    final_eip=40d819      
+3) offset=0xc797       steps=MAX    final_eip=40d819      
+4) offset= 0xad89       steps=2313       final_eip= 40be41      
+5) offset= 0xadb6       steps=2312       final_eip= 40be41      
+6) offset= 0xadb8       steps=2311       final_eip= 40be41      
+7) offset= 0xadcf       steps=2310       final_eip= 40be41 

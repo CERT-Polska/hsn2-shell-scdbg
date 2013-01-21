@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+
+    <id>hsn2</id>
+    <formats>
+      <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    
+    <files>
+    	<file>    	
+    		<destName>hsn2-shell-scdbg.jar</destName>
+    		<source>${project.build.directory}/hsn2-sc-service-${version}.jar</source>
+    		<fileMode>0644</fileMode>
+    	</file>
+    </files>
+        
+    <dependencySets>
+      <dependencySet>        
+        <outputDirectory>/lib</outputDirectory>
+        <useProjectArtifact>false</useProjectArtifact>
+        <fileMode>0644</fileMode>
+        <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+      </dependencySet>
+    </dependencySets>
+</assembly>

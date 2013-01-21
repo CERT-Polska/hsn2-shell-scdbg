@@ -1,0 +1,8 @@
+Package: hsn2-shell-scdbg
+Version: {VER}
+Section: unknown
+Priority: optional
+Architecture: amd64
+Maintainer: Pawel Jacewicz <pawel.jacewicz@cert.pl>
+Description: HSN2 Shellcode Analyzer Service
+Distribution: {DEBIAN_DIST}

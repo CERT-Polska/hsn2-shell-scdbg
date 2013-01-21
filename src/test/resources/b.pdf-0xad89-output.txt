@@ -1,0 +1,46 @@
+graph file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/tmp4761660847587070943.d/scdbg-8039815410388686798-graphFile
+Loaded 14000 bytes from file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/b.pdf
+Memory monitor enabled..
+Memory monitor for dlls enabled..
+Initilization Complete..
+Execution starts at file offset ad89 Opcodes: 72 38 7b 2b f3 c0 e6 aa 9c 90 
+40bd89	7238                            jc 0x40bdc3
+40bd8b	7B2B                            jpo 0x40bdb8
+40bd8d	F3C0E6AA                        rep shl dh,0xaa
+40bd91	9C                              pushf 
+40bd92	90                              nop 
+
+Dump mode Active...
+Max Steps: 2000000
+Using base offset: 0x401000
+
+40be40	 error accessing 0x00131000 not mapped
+
+Stepcount 2313
+Primary memory: Reading 0x14000 bytes from 0x401000
+Scanning for changes...
+No changes found in primary memory, dump not created.
+
+Memory Monitor Log:
+copying vertexes
+optimizing graph
+vertex 0xa69c9d8
+going forwards from 0xa69c9d8
+ -> vertex 0xa8c3900
+ -> vertex 0xa8c3a40
+ -> vertex 0xa8c3b70
+ -> vertex 0xa8c3d40
+ -> vertex 0xa8c3ed0
+ -> vertex 0xa8c4028
+ -> vertex 0xa8c4128
+copying edges for 0xa8c4128
+ -> 0xa8c6df0
+vertex 0xa8c42b0
+going forwards from 0xa8c42b0
+copying edges for 0xa8c42b0
+ -> 0xa8c6ef0
+vertex 0xa8c43b0
+going forwards from 0xa8c43b0
+copying edges for 0xa8c43b0
+ -> 0xa8c6df0
+ 

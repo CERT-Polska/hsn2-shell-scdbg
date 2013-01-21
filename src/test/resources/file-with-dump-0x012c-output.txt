@@ -1,0 +1,395 @@
+graph file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/tmp7925137433541506409.d/scdbg-4662063646688731448-graphFile
+Loaded a06 bytes from file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/file-with-dump
+Memory monitor enabled..
+Memory monitor for dlls enabled..
+Initilization Complete..
+Execution starts at file offset 12c Opcodes: e8 bc ff ff ff 75 77 30 46 52 
+40112c	E8BCFFFFFF                      call 0x4010ed
+401131	7577                            jnz 0x4011aa
+401133	304652                          xor [esi+0x52],al
+401136	1471                            adc al,0x71
+401138	0F6420                          pcmpgtb mm4,[eax]
+
+Dump mode Active...
+Max Steps: 2000000
+Using base offset: 0x401000
+
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017e6	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017e7	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017e8	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017e9	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017ea	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017eb	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017ec	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017ed	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017ee	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017ef	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f0	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f1	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f2	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f3	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f4	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f5	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f6	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f7	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f8	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017f9	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017fa	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017fb	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017fc	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017fd	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017fe	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c8017ff	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801800	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801801	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801802	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801803	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801804	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801805	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801806	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801807	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801808	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801809	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80180a	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80180b	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80180c	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80180d	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80180e	ReadFile  	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80180f	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801810	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801811	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801812	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801813	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801814	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801815	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801816	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801817	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801818	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801819	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80181a	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80181b	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80181c	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80181d	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80181e	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80181f	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801820	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801821	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801822	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801823	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801824	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801825	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801826	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801827	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801828	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801829	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80182a	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80182b	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80182c	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80182d	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80182e	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80182f	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801830	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801831	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801832	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801833	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801834	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801835	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801836	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801837	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801838	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801839	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80183a	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80183b	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80183c	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80183d	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80183e	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80183f	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801840	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801841	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801842	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801843	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801844	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801845	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801846	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801847	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801848	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801849	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80184a	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80184b	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80184c	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80184d	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80184e	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80184f	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801850	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801851	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801852	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801853	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801854	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801855	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801856	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801857	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801858	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801859	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80185a	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80185b	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80185c	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80185d	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80185e	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80185f	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801860	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801861	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801862	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801863	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801864	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801865	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801866	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801867	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801868	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801869	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80186a	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80186b	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80186c	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80186d	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80186e	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80186f	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801870	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801871	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801872	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801873	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801874	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801875	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801876	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801877	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801878	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801879	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80187a	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80187b	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80187c	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80187d	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80187e	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c80187f	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801880	          	READ
+40126b	mdll kernel32>	cmp byte [eax],0xc3	 7c801881	          	READ
+40142f	mdll kernel32>	mov edx,[ebx]	 7c880670	          	READ
+401441	mdll shell32>	movsx edx,[eax]	 7d105a4f	          	READ
+401441	mdll kernel32>	movsx edx,[eax]	 7c810001	          	READ
+401441	 error accessing 0x8b3a1f10 not mapped
+
+Stepcount 404812
+Primary memory: Reading 0xa06 bytes from 0x401000
+Scanning for changes...
+Change found at 305 dumping to /tmp/file-with-dump.unpack
+Data dumped successfully to disk
+Memory Monitor Log:
+	*PEB (fs30) accessed at 0x40123a
+	peb.InInitializationOrderModuleList accessed at 0x401246
+copying vertexes
+optimizing graph
+vertex 0x9b54348
+going forwards from 0x9b54348
+ -> vertex 0x9d7b270
+ -> vertex 0x9d7b3b0
+ -> vertex 0x9d7b4e0
+ -> vertex 0x9d7b610
+ -> vertex 0x9d7b740
+ -> vertex 0x9d7b900
+ -> vertex 0x9d7ba58
+ -> vertex 0x9d7bbf8
+ -> vertex 0x9d7bd50
+ -> vertex 0x9d7be50
+ -> vertex 0x9d7bf80
+ -> vertex 0x9d7c0b0
+ -> vertex 0x9d7c1e0
+copying edges for 0x9d7c1e0
+ -> 0x9d86fe0
+vertex 0x9d7c310
+going forwards from 0x9d7c310
+copying edges for 0x9d7c310
+ -> 0x9d870d8
+vertex 0x9d7c498
+going forwards from 0x9d7c498
+ -> vertex 0x9d7c5f0
+ -> vertex 0x9d7c6f0
+ -> vertex 0x9d7c820
+ -> vertex 0x9d7c9a8
+ -> vertex 0x9d7cb00
+ -> vertex 0x9d7cc58
+ -> vertex 0x9d7cd58
+ -> vertex 0x9d7ce88
+ -> vertex 0x9d7cfb8
+ -> vertex 0x9d7d140
+ -> vertex 0x9d7d240
+copying edges for 0x9d7d240
+ -> 0x9d87d00
+vertex 0x9d7d370
+going forwards from 0x9d7d370
+copying edges for 0x9d7d370
+ -> 0x9d86fe0
+ -> 0x9d87e00
+vertex 0x9d7d4a0
+going forwards from 0x9d7d4a0
+ -> vertex 0x9d7d658
+ -> vertex 0x9d7d758
+ -> vertex 0x9d7d888
+ -> vertex 0x9d7d9b8
+ -> vertex 0x9d7dae8
+ -> vertex 0x9d7dc18
+ -> vertex 0x9d7dda0
+ -> vertex 0x9d7def8
+ -> vertex 0x9d7e050
+ -> vertex 0x9d7e1a8
+ -> vertex 0x9d7e300
+ -> vertex 0x9d7e458
+ -> vertex 0x9d7e558
+ -> vertex 0x9d7e688
+ -> vertex 0x9d7e7b8
+ -> vertex 0x9d7e8e8
+ -> vertex 0x9d7ea18
+ -> vertex 0x9d7eb48
+ -> vertex 0x9d7ec50
+ -> vertex 0x9d7edb8
+copying edges for 0x9d7edb8
+ -> 0x9d89328
+vertex 0x9d7eee8
+going forwards from 0x9d7eee8
+copying edges for 0x9d7eee8
+ -> 0x9d89428
+vertex 0x9d7f018
+going forwards from 0x9d7f018
+ -> vertex 0x9d7f148
+ -> vertex 0x9d7f278
+ -> vertex 0x9d7f400
+ -> vertex 0x9d7f558
+ -> vertex 0x9d7f658
+ -> vertex 0x9d7f788
+ -> vertex 0x9d7f910
+ -> vertex 0x9d7fa10
+ -> vertex 0x9d7fb40
+copying edges for 0x9d7fb40
+ -> 0x9d89e18
+vertex 0x9d7fc70
+going forwards from 0x9d7fc70
+copying edges for 0x9d7fc70
+ -> 0x9d89f18
+vertex 0x9d7fda0
+going forwards from 0x9d7fda0
+ -> vertex 0x9d7ff28
+ -> vertex 0x9d80028
+copying edges for 0x9d80028
+ -> 0x9d8a210
+vertex 0x9d80158
+going forwards from 0x9d80158
+copying edges for 0x9d80158
+ -> 0x9d8a318
+vertex 0x9d802e0
+going forwards from 0x9d802e0
+copying edges for 0x9d802e0
+ -> 0x9d8a418
+vertex 0x9d803e0
+going forwards from 0x9d803e0
+copying edges for 0x9d803e0
+ -> 0x9d8a518
+ -> 0x9d8a918
+vertex 0x9d80510
+going forwards from 0x9d80510
+ -> vertex 0x9d80640
+ -> vertex 0x9d80770
+ -> vertex 0x9d808a0
+copying edges for 0x9d808a0
+ -> 0x9d8a210
+vertex 0x9d809d0
+going forwards from 0x9d809d0
+copying edges for 0x9d809d0
+ -> 0x9d8aa18
+vertex 0x9d80b30
+going forwards from 0x9d80b30
+copying edges for 0x9d80b30
+ -> 0x9d89e18
+ -> 0x9d8ab18
+vertex 0x9d80c60
+going forwards from 0x9d80c60
+ -> vertex 0x9d80dc0
+ -> vertex 0x9d80f48
+ -> vertex 0x9d81048
+ -> vertex 0x9d811d0
+ -> vertex 0x9d81328
+ -> vertex 0x9d81428
+ -> vertex 0x9d815b0
+ -> vertex 0x9d816b0
+ -> vertex 0x9d81838
+ -> vertex 0x9d81938
+ -> vertex 0x9d81a68
+copying edges for 0x9d81a68
+ -> 0x9d8b728
+vertex 0x9d81bf0
+going forwards from 0x9d81bf0
+copying edges for 0x9d81bf0
+ -> 0x9d89328
+ -> 0x9d8b828
+vertex 0x9d81cf0
+going forwards from 0x9d81cf0
+copying edges for 0x9d81cf0
+ -> 0x9d8b928
+vertex 0x9d81e50
+going forwards from 0x9d81e50
+copying edges for 0x9d81e50
+ -> 0x9d8ba30
+vertex 0x9d81fd8
+going forwards from 0x9d81fd8
+copying edges for 0x9d81fd8
+ -> 0x9d8b828
+ -> 0x9d8bb30
+vertex 0x9d820d8
+going forwards from 0x9d820d8
+ -> vertex 0x9d82290
+ -> vertex 0x9d82390
+ -> vertex 0x9d824c0
+ -> vertex 0x9d825f0
+ -> vertex 0x9d82720
+ -> vertex 0x9d828a8
+ -> vertex 0x9d829a8
+ -> vertex 0x9d82b30
+ -> vertex 0x9d82c30
+ -> vertex 0x9d82d60
+ -> vertex 0x9d82e90
+ -> vertex 0x9d82fc0
+ -> vertex 0x9d830f0
+copying edges for 0x9d830f0
+ -> 0x9d8c948
+vertex 0x9d83220
+going forwards from 0x9d83220
+copying edges for 0x9d83220
+ -> 0x9d8ca48
+vertex 0x9d83350
+going forwards from 0x9d83350
+ -> vertex 0x9d834d8
+ -> vertex 0x9d83630
+ -> vertex 0x9d83788
+copying edges for 0x9d83788
+ -> 0x9d8ce28
+vertex 0x9d83888
+going forwards from 0x9d83888
+copying edges for 0x9d83888
+ -> 0x9d8cf30
+vertex 0x9d83a10
+going forwards from 0x9d83a10
+copying edges for 0x9d83a10
+ -> 0x9d8d030
+vertex 0x9d83b10
+going forwards from 0x9d83b10
+copying edges for 0x9d83b10
+ -> 0x9d8d130
+ -> 0x9d8d428
+vertex 0x9d83c40
+going forwards from 0x9d83c40
+ -> vertex 0x9d83d70
+ -> vertex 0x9d83ef8
+copying edges for 0x9d83ef8
+ -> 0x9d8c948
+vertex 0x9d83ff8
+going forwards from 0x9d83ff8
+ -> vertex 0x9d84158
+ -> vertex 0x9d84288
+ -> vertex 0x9d843b8
+copying edges for 0x9d843b8
+ -> 0x9d8ce28

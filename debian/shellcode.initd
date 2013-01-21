@@ -1,0 +1,67 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:               hsn2-shell-scdbg
+# Required-Start:
+# Required-Stop:
+# Default-Start:          2 3 4 5
+# Default-Stop:           0 1 6
+# Short-Description:      Start/Stop the HSN2 Shellcode Analyzer
+# Description:            Start/Stop the HSN2 Shellcode Analyzer Service daemon.
+### END INIT INFO
+
+if [ -z "`which java`" ]; then
+	echo "JAVA need to be installed first!"
+	exit 1
+fi
+
+. /lib/lsb/init-functions
+
+NAME="HSN2 Shellcode Analyzer"
+HSN2_COMPONENT="shell-scdbg"
+
+HSN2_COMPONENT_HOME="/opt/hsn2/$HSN2_COMPONENT"
+PIDFILE="/var/run/hsn2-$HSN2_COMPONENT.pid"
+
+HSN2_COMPONENT_PARAMS="--connector 127.0.0.1 \
+--dataStore http://localhost:8080 \
+--maxThreads 10 \
+--scdbgPath ${HSN2_COMPONENT_HOME}/lib/scdbg"
+
+HSN2_JVM_PARAMS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=1109"
+
+case "$1" in
+	start)
+		log_daemon_msg "Starting" "$NAME"
+		cd "$HSN2_COMPONENT_HOME"
+		# workaround (see redmine #6587, #6324)
+		start-stop-daemon --start --quiet --oknodo --background --make-pidfile --pidfile $PIDFILE --exec /usr/bin/java -- $HSN2_JVM_PARAMS -jar $HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $HSN2_COMPONENT_PARAMS
+		sleep 1
+		PID=`cat $PIDFILE`
+		TEST=`ps ax | grep $PID | grep java | sed -e 's/^ *//' | cut -d' ' -f1`
+		if [ -n "$TEST" ]; then
+		# original code
+		#if start-stop-daemon --start --quiet --oknodo --background --make-pidfile --pidfile $PIDFILE --exec /usr/bin/java -- -jar $HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $HSN2_COMPONENT_PARAMS; then
+			log_end_msg 0
+		else
+			log_end_msg 1
+			echo "" > $PIDFILE
+		fi
+		;;
+
+	stop)
+		log_daemon_msg "Stopping" "$NAME"
+		if start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE; then
+			log_end_msg 0
+			echo "" > $PIDFILE
+			#rm -f $PIDFILE
+		else
+			log_end_msg 1
+		fi
+		;;
+
+	status)
+		status_of_proc -p $PIDFILE "$JAVA" "$NAME" && exit 0 || exit $?
+		;;
+esac
+exit 0

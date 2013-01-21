@@ -1,0 +1,9 @@
+Loaded a06 bytes from file /home/arturg/Projekty/hsn2/repo/hsn2/trunk/software/Services/hsn2-sc-service/testTmp/file-with-dump
+Initilization Complete..
+Max Steps: 2000000
+Using base offset: 0x401000
+[33;1mShellcode detected at offset = 0x012c
+[0m
+[31;1m401441	 error accessing 0x8b3a1f10 not mapped
+[0m
+Stepcount 404812
