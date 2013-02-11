@@ -39,7 +39,7 @@ public final class ScService {
 
         ScdbgTool tool = new ScdbgTool(wrapper, new File(System.getProperty("java.io.tmpdir")));
 
-        GenericService service = new GenericService(new ScTaskFactory(tool), cmd.getMaxThreads(), cmd.getRbtCommonExchangeName());
+        GenericService service = new GenericService(new ScTaskFactory(tool), cmd.getMaxThreads(), cmd.getRbtCommonExchangeName(), cmd.getRbtNotifyExchangeName());
 
         cmd.applyArguments(service);
         service.run();
