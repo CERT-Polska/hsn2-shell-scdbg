@@ -10,13 +10,6 @@
 # Description:            Start/Stop the HSN2 Shellcode Analyzer Service daemon.
 ### END INIT INFO
 
-if [ -z "`which java`" ]; then
-	echo "JAVA need to be installed first!"
-	exit 1
-fi
-
-. /lib/lsb/init-functions
-
 NAME="HSN2 Shellcode Analyzer"
 HSN2_COMPONENT="shell-scdbg"
 
@@ -30,38 +23,46 @@ HSN2_COMPONENT_PARAMS="--connector 127.0.0.1 \
 
 HSN2_JVM_PARAMS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=1109"
 
-case "$1" in
-	start)
-		log_daemon_msg "Starting" "$NAME"
-		cd "$HSN2_COMPONENT_HOME"
-		# workaround (see redmine #6587, #6324)
-		start-stop-daemon --start --quiet --oknodo --background --make-pidfile --pidfile $PIDFILE --exec /usr/bin/java -- $HSN2_JVM_PARAMS -jar $HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $HSN2_COMPONENT_PARAMS
-		sleep 1
-		PID=`cat $PIDFILE`
-		TEST=`ps ax | grep $PID | grep java | sed -e 's/^ *//' | cut -d' ' -f1`
-		if [ -n "$TEST" ]; then
-		# original code
-		#if start-stop-daemon --start --quiet --oknodo --background --make-pidfile --pidfile $PIDFILE --exec /usr/bin/java -- -jar $HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $HSN2_COMPONENT_PARAMS; then
-			log_end_msg 0
-		else
-			log_end_msg 1
-			echo "" > $PIDFILE
-		fi
-		;;
+MAINCLASS="pl.nask.hsn2.service.ScService"
 
-	stop)
-		log_daemon_msg "Stopping" "$NAME"
-		if start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE; then
-			log_end_msg 0
-			echo "" > $PIDFILE
-			#rm -f $PIDFILE
-		else
-			log_end_msg 1
-		fi
-		;;
+JSVCBIN=`which jsvc`
 
-	status)
-		status_of_proc -p $PIDFILE "$JAVA" "$NAME" && exit 0 || exit $?
-		;;
-esac
-exit 0
+. /lib/lsb/init-functions
+
+# Include the wrappers utility script
+. /usr/lib/java-wrappers/java-wrappers.sh
+
+# We need openjdk runtime.
+require_java_runtime openjdk
+
+find_jars commons-io slf4j-log4j12 slf4j-api log4j-1.2 commons-daemon
+
+use_jsvc_wrapper () {
+	#log_daemon_msg "using jsvc..."
+	case "$1" in
+		start)
+			log_daemon_msg "Starting" "$NAME"
+			$JSVCBIN -home $JAVA_HOME -wait 30 -pidfile ${PIDFILE} $HSN2_JVM_PARAMS -cp $JAVA_CLASSPATH:$HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $MAINCLASS $HSN2_COMPONENT_PARAMS
+			
+			log_end_msg $?
+			return $?
+			;;
+		stop)
+			log_daemon_msg "Stopping" "$NAME"
+			$JSVCBIN -home $JAVA_HOME -stop -pidfile ${PIDFILE} $HSN2_JVM_PARAMS -cp $JAVA_CLASSPATH:$HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $MAINCLASS 
+
+			log_end_msg $?
+			return $?
+			;;
+		status)
+			status_of_proc -p $PIDFILE $JSVCBIN "$NAME" && return 0 || return $?
+			;;
+	esac
+		
+return 0
+}
+	
+use_jsvc_wrapper $@
+
+exit $?
+
