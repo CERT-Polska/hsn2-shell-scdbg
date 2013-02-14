@@ -70,6 +70,7 @@ public class ScdbgTool {
         File graphFile;
         try {
             graphFile = File.createTempFile("scdbg-", "-graphFile", localTemp);
+            LOGGER.debug("Created tmp graph file:{}",graphFile.getAbsolutePath());
         } catch (IOException e) {
             throw new ResourceException("Error creating tmp graphFile", e);
         }
@@ -97,7 +98,7 @@ public class ScdbgTool {
     }
 
     void scanForOffsets(ScdbgResultBuilder builder, String filename) throws ResourceException  {
-        LOGGER.debug("Scanning file {} for offsets");
+        LOGGER.debug("Scanning file {} for offsets",filename);
         InputStream input = scdbg.executeForOffsets(filename, tmpDir);
         processInput(builder, input);
     }
