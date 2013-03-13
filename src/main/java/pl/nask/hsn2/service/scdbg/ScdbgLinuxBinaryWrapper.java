@@ -158,7 +158,7 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
     }
 
     private InputStream execute(String commandLine, File localTmp) throws ResourceException {
-        LOGGER.debug("Executing {}", (Object) commandLine));
+        LOGGER.debug("Executing {}", (Object) commandLine);
         try {
             long timeout = 0;
             
