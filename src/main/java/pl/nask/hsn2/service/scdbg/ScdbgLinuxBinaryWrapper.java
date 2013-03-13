@@ -158,7 +158,7 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
     }
 
     private InputStream execute(String commandLine, File localTmp) throws ResourceException {
-        LOGGER.debug("Executing {}", (Object) commandLine);
+        LOGGER.debug("Executing {}", (Object) commandLine));
         try {
             long timeout = 0;
             
@@ -170,15 +170,16 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
             TimedScdbgProcess scdbgTask = new TimedScdbgProcess(commandLine, localTmp, memoryLimitInMb);
             int retVal = timedCall(scdbgTask, timeout, TimeUnit.SECONDS);
             if (retVal != NO_SHELLCODE_DETECTED_EXIT_VALUE && retVal != SUCCESS_EXIT_VALUE) {
-                throw new ResourceException("Error executing scdbg:");
+            	LOGGER.warn("Unexpected scdbg shell exit val = {}, for command: {}",retVal,commandLine);
+                throw new ResourceException("Error executing scdbg, abnormal exit code:["+retVal+"]");
             }
             return new ByteArrayInputStream(scdbgTask.getBytes());
         } catch (InterruptedException e) {
-            throw new ResourceException("Error executing scdbg", e);
+            throw new ResourceException("Error executing scdbg.interrupted.", e);
         } catch (ExecutionException e) {
             throw new ResourceException("Error executing scdbg", e);
         } catch (TimeoutException e) {
-            throw new ResourceException("Error executing scdbg", e);
+            throw new ResourceException("Error executing scdbg.timeout.", e);
         }
     }
 
