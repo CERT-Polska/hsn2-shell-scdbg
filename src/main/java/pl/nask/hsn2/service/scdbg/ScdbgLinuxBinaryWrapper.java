@@ -98,7 +98,7 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
     private static ExecutorService THREAD_POOL;
     private int memoryLimitInMb;
 
-    public ScdbgLinuxBinaryWrapper(String scdbgPath, String scdbgTimeout,int noThreads) {
+    public ScdbgLinuxBinaryWrapper(String scdbgPath, String scdbgTimeout,int noThreads) throws ResourceException {
     	THREAD_POOL = Executors.newFixedThreadPool(noThreads > 0 ? noThreads:1 );
         File f = new File(scdbgPath);
         if (!f.exists()) {
@@ -109,7 +109,7 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
         checkSCDBGTool();
     }
 
-    public ScdbgLinuxBinaryWrapper(String scdbgPath, String scdbgTimeout) {
+    public ScdbgLinuxBinaryWrapper(String scdbgPath, String scdbgTimeout) throws ResourceException {
     	this(scdbgPath, scdbgTimeout, 1);
     }
 
@@ -120,7 +120,7 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
      * @throws ResourceException
      * @throws IllegalArgumentException if problems occur in running SCDBG tool
      */
-    final void checkSCDBGTool() {
+    final void checkSCDBGTool() throws ResourceException {
         try {
             LOGGER.debug("Testing '" + scdbgPath + "'");
             Process p = Runtime.getRuntime().exec(scdbgPath + " \n");
@@ -134,9 +134,10 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
                 LOGGER.debug(new String(b));
             }
         } catch (IOException e) {
-            LOGGER.debug(e.getMessage());
+            LOGGER.error(e.getMessage());
+            throw new ResourceException("Error checking scdbg tool.",e);
         } catch (InterruptedException e) {
-            LOGGER.warn("Interrupted", e);
+            LOGGER.error("Check interrupted.", e);
         }
     }
 

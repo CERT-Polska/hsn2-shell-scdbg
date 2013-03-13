@@ -50,7 +50,7 @@ public class ScdbgRealTest {
 	private ScdbgResultBuilder builder;
 
 	@BeforeClass
-	public void prepareTestFiles() throws FileNotFoundException, IOException {
+	public void prepareTestFiles() throws FileNotFoundException, IOException, ResourceException {
 		tmpDir = new File("testTmp");
 		Assert.assertTrue(tmpDir.exists() || tmpDir.mkdir());
 		bPdfFile = prepareTestFile("b.pdf");
