@@ -20,104 +20,53 @@
 package pl.nask.hsn2.service;
 
 import java.io.File;
-import java.lang.Thread.UncaughtExceptionHandler;
 
-import org.apache.commons.daemon.Daemon;
 import org.apache.commons.daemon.DaemonContext;
 import org.apache.commons.daemon.DaemonController;
 import org.apache.commons.daemon.DaemonInitException;
 
-import pl.nask.hsn2.GenericService;
+import pl.nask.hsn2.CommandLineParams;
+import pl.nask.hsn2.ResourceException;
+import pl.nask.hsn2.ServiceMain;
 import pl.nask.hsn2.service.scdbg.ScdbgLinuxBinaryWrapper;
 import pl.nask.hsn2.service.scdbg.ScdbgTool;
 import pl.nask.hsn2.service.scdbg.ScdbgWrapper;
+import pl.nask.hsn2.task.TaskFactory;
 
-public final class ScService implements Daemon {
+public final class ScService extends ServiceMain {
 
-    private ScCommandLineParams cmd;
-	private volatile ScdbgTool scdbgTool;
-	private Thread serviceWorker;
-
-    public static void main(String[] args) throws DaemonInitException, Exception {
-    	
+    public static void main(final String[] args) throws DaemonInitException, Exception {
     	ScService scs = new ScService();
-    	scs.init(new JsvcArgsWrapper(args));
+    	scs.init(new DaemonContext() {
+			public DaemonController getController() {
+				return null;
+			}
+			public String[] getArguments() {
+				return args;
+			}
+		});
     	scs.start();
-    	scs.serviceWorker.join();
-    	scs.stop();
     }
 
 	@Override
-	public void init(DaemonContext context) throws DaemonInitException, Exception {
-			cmd = new ScCommandLineParams();
-	        cmd.parseParams(context.getArguments());
-
-	        ScdbgWrapper wrapper = new ScdbgLinuxBinaryWrapper(cmd.getScdbgPath(), cmd.getScdbgTimeout(),cmd.getMaxThreads());
-
-	        scdbgTool = new ScdbgTool(wrapper, new File(System.getProperty("java.io.tmpdir")));
-		
+	protected void prepareService() {
 	}
 
 	@Override
-	public void start() throws Exception {
-		final GenericService service = new GenericService(new ScTaskFactory(scdbgTool), cmd.getMaxThreads(), cmd.getRbtCommonExchangeName(), cmd.getRbtNotifyExchangeName());
-
-        cmd.applyArguments(service);
-        serviceWorker = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-					
-					@Override
-					public void uncaughtException(Thread t, Throwable e) {
-						System.exit(1);
-						
-					}
-				});
-				 try {
-					service.run();
-				} catch (InterruptedException e) {
-					System.exit(0);
-				}
-				
-			}
-		},"ShellAnalyzer-service");
-        serviceWorker.start();
-       
-		
-	}
-
-	@Override
-	public void stop() throws Exception {
-		serviceWorker.interrupt();
-		serviceWorker.join();
-		
-	}
-
-	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		
+	protected TaskFactory createTaskFactory() {
+		try {
+			ScCommandLineParams cmd = (ScCommandLineParams)getCommandLineParams();
+			ScdbgWrapper wrapper = new ScdbgLinuxBinaryWrapper(cmd.getScdbgPath(), cmd.getScdbgTimeout(),cmd.getMaxThreads());
+	        ScdbgTool scdbgTool = new ScdbgTool(wrapper, new File(System.getProperty("java.io.tmpdir")));
+			return new ScTaskFactory(scdbgTool);
+		}
+		catch(ResourceException e){
+			throw new RuntimeException(e);
+		}
 	}
 	
-	
-	private static class JsvcArgsWrapper implements DaemonContext{
-
-		private String[] args;
-
-		public JsvcArgsWrapper(String[] p) {
-			this.args = p;
-		}
-		@Override
-		public DaemonController getController() {
-			return null;
-		}
-
-		@Override
-		public String[] getArguments() {
-			return args;
-		}
-		
+	@Override
+	protected CommandLineParams newCommandLineParams() {
+		return new ScCommandLineParams();
 	}
 }
