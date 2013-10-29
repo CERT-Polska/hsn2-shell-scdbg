@@ -29,10 +29,10 @@ import pl.nask.hsn2.wrappers.ParametersWrapper;
 
 public class ScTaskFactory implements TaskFactory {
 	private static final int SCDBG_MEMORY_LIMIT = 128;
-    private final ScdbgTool tool;
-
-    public ScTaskFactory(ScdbgTool tool) {
-        this.tool = tool;
+    private static ScdbgTool tool;
+    
+    public static void prepereForAllThreads(ScdbgTool tool) {
+        ScTaskFactory.tool = tool;
     }
 
     public Task newTask(TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data)
@@ -41,5 +41,4 @@ public class ScTaskFactory implements TaskFactory {
     	tool.setMemoryLimit(memLimit);
         return new ShellcodeTask(tool, jobContext, parameters, data);
     }
-
 }

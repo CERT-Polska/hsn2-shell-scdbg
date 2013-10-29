@@ -53,12 +53,13 @@ public final class ScService extends ServiceMain {
 	}
 
 	@Override
-	protected TaskFactory createTaskFactory() {
+	protected Class<? extends TaskFactory> initializeTaskFactory() {
 		try {
 			ScCommandLineParams cmd = (ScCommandLineParams)getCommandLineParams();
 			ScdbgWrapper wrapper = new ScdbgLinuxBinaryWrapper(cmd.getScdbgPath(), cmd.getScdbgTimeout(),cmd.getMaxThreads());
 	        ScdbgTool scdbgTool = new ScdbgTool(wrapper, new File(System.getProperty("java.io.tmpdir")));
-			return new ScTaskFactory(scdbgTool);
+	        ScTaskFactory.prepereForAllThreads(scdbgTool);
+	        return ScTaskFactory.class;
 		}
 		catch(ResourceException e){
 			throw new RuntimeException(e);
