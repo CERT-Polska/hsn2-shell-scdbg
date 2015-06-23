@@ -1,8 +1,11 @@
-Package: hsn2-shell-scdbg
-Version: {VER}
+Source: hsn2-shell-scdbg
 Section: unknown
 Priority: optional
-Architecture: amd64
-Maintainer: Pawel Jacewicz <pawel.jacewicz@cert.pl>
+Maintainer: CERT Polska <info@cert.pl>
+Build-Depends: debhelper (>= 8.0.0), maven
+Standards-Version: 3.9.3
+
+Package: hsn2-shell-scdbg
+Architecture: i386 amd64
+Depends: ${misc:Depends}
 Description: HSN2 Shellcode Analyzer Service
-Distribution: {DEBIAN_DIST}

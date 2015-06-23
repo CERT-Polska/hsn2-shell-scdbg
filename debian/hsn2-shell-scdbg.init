@@ -35,21 +35,21 @@ JSVCBIN=`which jsvc`
 # We need openjdk runtime.
 require_java_runtime openjdk
 
-find_jars commons-io slf4j-log4j12 slf4j-api log4j-1.2 commons-daemon
+# find_jars commons-io slf4j-log4j12 slf4j-api log4j-1.2 commons-daemon
 
 use_jsvc_wrapper () {
 	#log_daemon_msg "using jsvc..."
 	case "$1" in
 		start)
 			log_daemon_msg "Starting" "$NAME"
-			$JSVCBIN -home $JAVA_HOME -wait 30 -pidfile ${PIDFILE} $HSN2_JVM_PARAMS -cp $JAVA_CLASSPATH:$HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $MAINCLASS $HSN2_COMPONENT_PARAMS
+			$JSVCBIN -home $JAVA_HOME -wait 30 -pidfile ${PIDFILE} $HSN2_JVM_PARAMS -cp $JAVA_CLASSPATH:$HSN2_COMPONENT_HOME/lib:$HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $MAINCLASS $HSN2_COMPONENT_PARAMS
 			
 			log_end_msg $?
 			return $?
 			;;
 		stop)
 			log_daemon_msg "Stopping" "$NAME"
-			$JSVCBIN -home $JAVA_HOME -stop -pidfile ${PIDFILE} $HSN2_JVM_PARAMS -cp $JAVA_CLASSPATH:$HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $MAINCLASS 
+			$JSVCBIN -home $JAVA_HOME -stop -pidfile ${PIDFILE} $HSN2_JVM_PARAMS -cp $JAVA_CLASSPATH:$HSN2_COMPONENT_HOME/lib:$HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar $MAINCLASS 
 
 			log_end_msg $?
 			return $?
