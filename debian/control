@@ -1,5 +1,5 @@
 Source: hsn2-shell-scdbg
-Section: unknown
+Section: java
 Priority: optional
 Maintainer: CERT Polska <info@cert.pl>
 Build-Depends: debhelper (>= 8.0.0), maven
@@ -7,5 +7,6 @@ Standards-Version: 3.9.3
 
 Package: hsn2-shell-scdbg
 Architecture: i386 amd64
-Depends: ${misc:Depends}
+Depends: ${misc:Depends}, java-wrappers, openjdk-7-jre, jsvc
+Homepage: http://www.honeyspider.net
 Description: HSN2 Shellcode Analyzer Service
