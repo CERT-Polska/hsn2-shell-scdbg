@@ -10,3 +10,4 @@ Architecture: i386 amd64
 Depends: ${misc:Depends}, java-wrappers, openjdk-7-jre, jsvc
 Homepage: http://www.honeyspider.net
 Description: HSN2 Shellcode Analyzer Service
+ Performs run-time shellcode analysis, using the scdbg tool.

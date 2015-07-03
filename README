@@ -2,7 +2,7 @@ HSN2 Shell-scdbg (hsn2-shell-scdbg)
 
 
 The HSN2 Shell-scdbg service performs run-time shellcode analysis, 
-using scdbg <https://github.com/dzzie/SCDBG> tool.
+using the scdbg <https://github.com/dzzie/SCDBG> tool.
 
 
 

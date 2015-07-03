@@ -3,8 +3,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>hsn2-sc-service</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>HSN2 shellcode analyser service</name>
-	<description>Shellcode analyser service using scdbg</description>
+	<name>HSN2 Shellcode Analyser</name>
+	<description>The HSN2 Shell-scdbg service performs run-time shellcode analysis, using the scdbg &lt;https://github.com/dzzie/SCDBG&gt; tool.</description>
 
 	<properties>
 		<mainClass>pl.nask.hsn2.service.ScService</mainClass>
