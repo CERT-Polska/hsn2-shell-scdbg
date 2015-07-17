@@ -12,57 +12,20 @@
 
 NAME="HSN2 Shellcode Analyzer"
 HSN2_COMPONENT="shell-scdbg"
-
-HSN2_COMPONENT_HOME="/opt/hsn2/$HSN2_COMPONENT"
-PIDFILE="/var/run/hsn2-$HSN2_COMPONENT.pid"
-
-HSN2_COMPONENT_PARAMS="--connector 127.0.0.1 \
---dataStore http://localhost:8080 \
---maxThreads 10 \
---scdbgPath ${HSN2_COMPONENT_HOME}/lib/scdbg"
-
-HSN2_CLASSPATH=$HSN2_COMPONENT_HOME/lib:$HSN2_COMPONENT_HOME/hsn2-$HSN2_COMPONENT.jar
-
-HSN2_JVM_PARAMS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=1109"
-
 MAINCLASS="pl.nask.hsn2.service.ScService"
+CONFFILE=/etc/hsn2/shell-scdbg.conf
 
-JSVCBIN=`which jsvc`
+HSN2_JMX_PORT=1109
 
-. /lib/lsb/init-functions
+. /lib/hsn2/init-functions-java
 
-# Include the wrappers utility script
-. /usr/lib/java-wrappers/java-wrappers.sh
-
-# We need openjdk runtime.
-require_java_runtime openjdk
-
-use_jsvc_wrapper () {
-	#log_daemon_msg "using jsvc..."
-	case "$1" in
-		start)
-			log_daemon_msg "Starting" "$NAME"
-			$JSVCBIN -home $JAVA_HOME -wait 30 -pidfile ${PIDFILE} $HSN2_JVM_PARAMS -cp $JAVA_CLASSPATH:$HSN2_CLASSPATH $MAINCLASS $HSN2_COMPONENT_PARAMS
-			
-			log_end_msg $?
-			return $?
-			;;
-		stop)
-			log_daemon_msg "Stopping" "$NAME"
-			$JSVCBIN -home $JAVA_HOME -stop -pidfile ${PIDFILE} $HSN2_JVM_PARAMS -cp $JAVA_CLASSPATH:$HSN2_CLASSPATH $MAINCLASS 
-
-			log_end_msg $?
-			return $?
-			;;
-		status)
-			status_of_proc -p $PIDFILE $JSVCBIN "$NAME" && return 0 || return $?
-			;;
-	esac
-		
-return 0
+prepare_start() {
+	HSN2_COMPONENT_PARAMS="--connector $BROKER_ADDRESS \
+		--dataStore http://$DATASTORE_ADDRESS \
+		--maxThreads $MAX_THREADS \
+		--scdbgPath ${HSN2_COMPONENT_HOME}/lib/scdbg"
 }
-	
-use_jsvc_wrapper $@
+
+choose_java_service_action $@
 
 exit $?
-

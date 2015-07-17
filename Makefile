@@ -11,6 +11,7 @@ ${FULL_COMPONENT}-package:
 	mkdir -p build/shell-scdbg
 	tar xzf target/${FULL_COMPONENT}-1.0.0-SNAPSHOT.tar.gz -C build/shell-scdbg
 	cp scdbg-amd64 build/shell-scdbg/lib/scdbg
+	chmod +x build/shell-scdbg/lib/scdbg
 
 ${FULL_COMPONENT}-package-clean:
 	rm -rf build

@@ -4,4 +4,4 @@
 	dh $@
 
 override_dh_installinit:
-	dh_installinit --name=hsn2-reporter
+	dh_installinit --name=hsn2-shell-scdbg

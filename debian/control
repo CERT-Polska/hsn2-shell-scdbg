@@ -7,7 +7,7 @@ Standards-Version: 3.9.3
 
 Package: hsn2-shell-scdbg
 Architecture: i386 amd64
-Depends: ${misc:Depends}, java-wrappers, openjdk-7-jre, jsvc
+Depends: ${misc:Depends}, java-wrappers, openjdk-7-jre, jsvc, libemu2
 Homepage: http://www.honeyspider.net
 Description: HSN2 Shellcode Analyzer Service
  Performs run-time shellcode analysis, using the scdbg tool.
