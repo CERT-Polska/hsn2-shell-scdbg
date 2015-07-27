@@ -15,7 +15,7 @@ HSN2_COMPONENT="shell-scdbg"
 MAINCLASS="pl.nask.hsn2.service.ScService"
 CONFFILE=/etc/hsn2/shell-scdbg.conf
 
-HSN2_JMX_PORT=1109
+HSN2_JMX_PORT=1111
 
 . /lib/hsn2/init-functions-java
 
