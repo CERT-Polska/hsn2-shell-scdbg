@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -45,28 +45,25 @@ import pl.nask.hsn2.service.scdbg.ScdbgTool;
 import pl.nask.hsn2.service.scdbg.ScdbgToolResult;
 import pl.nask.hsn2.task.Task;
 import pl.nask.hsn2.wrappers.ObjectDataWrapper;
-import pl.nask.hsn2.wrappers.ParametersWrapper;
 
 public class ShellcodeTask implements Task {
-    private final static Logger LOGGER = LoggerFactory.getLogger(ShellcodeTask.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShellcodeTask.class);
 
     private final ScdbgTool tool;
     private Long fileId;
     private final TaskContext jobContext;
-    private final ObjectDataWrapper data;
 
-    public ShellcodeTask(ScdbgTool tool, TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data) {
+    public ShellcodeTask(ScdbgTool tool, TaskContext jobContext, ObjectDataWrapper data) {
         this.tool = tool;
         this.jobContext = jobContext;
-        this.data = data;
-        this.fileId = data.getReferenceId("content");
+        fileId = data.getReferenceId("content");
     }
 
-    public boolean takesMuchTime() {
+    public final boolean takesMuchTime() {
         return fileId != null;
     }
 
-    public void process() throws ParameterException, ResourceException, StorageException {
+    public final void process() throws ParameterException, ResourceException, StorageException {
         if (fileId == null) {
             LOGGER.info("Task skipped");
         } else {

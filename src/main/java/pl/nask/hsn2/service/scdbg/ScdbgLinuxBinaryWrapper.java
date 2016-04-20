@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -39,32 +39,29 @@ import pl.nask.hsn2.ResourceException;
 
 class TimedScdbgProcess implements Callable<Integer> {
 
-    private byte[] bytes;
-    private PrintWriter writer;
+    private static final int BINARY_UNIT_BASE = 1024;
+	private byte[] bytes;
     private String[] commandLine;
     private File localTmp;
-    private int memoryLimitInKb;
 
-	public TimedScdbgProcess(String commandLine, File localTmp,
-			int memoryLimitInMb) {
+	public TimedScdbgProcess(String commandLine, File localTmp, int memoryLimitInMb) {
 		this.localTmp = localTmp;
-		memoryLimitInKb = 1024 * memoryLimitInMb;
+		int memoryLimitInKb = BINARY_UNIT_BASE * memoryLimitInMb;
 		this.commandLine = new String[] { "bash", "-c",
 				"ulimit -v " + memoryLimitInKb + ";" + commandLine };
 	}
 
     @Override
-    public Integer call() throws Exception {
+    public Integer call() throws IOException, ResourceException, InterruptedException {
     	for (String s:commandLine){
-    		System.out.print(s + " ");
+    		System.out.print(s + " "); //NPMD
     	}
-    	System.out.println();
-    	
-    	
+    	System.out.println(); //NOPMD
+
+
     	Process p = Runtime.getRuntime().exec(commandLine, null, localTmp);
 
-        try {
-            writer = new PrintWriter(p.getOutputStream());
+        try (PrintWriter writer = new PrintWriter(p.getOutputStream())) {
             // have to emit ENTER to make scdbg end processing.
             writer.println();
             writer.flush();
@@ -74,7 +71,6 @@ class TimedScdbgProcess implements Callable<Integer> {
         } catch (IOException e) {
             throw new ResourceException("Error executing scdbg", e);
         } finally {
-            IOUtils.closeQuietly(writer);
             if (p != null) {
                 p.destroy();
             }
@@ -95,11 +91,13 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
     private static final int DEFAULT_EXECUTION_TIMEOUT = 60;
     private final String scdbgPath;
     private final String scdbgTimeout;
-    private static ExecutorService THREAD_POOL;
+    private static ExecutorService threadPool = null;
     private int memoryLimitInMb;
 
     public ScdbgLinuxBinaryWrapper(String scdbgPath, String scdbgTimeout,int noThreads) throws ResourceException {
-    	THREAD_POOL = Executors.newFixedThreadPool(noThreads > 0 ? noThreads:1 );
+    	if (threadPool == null) {
+    		threadPool = Executors.newFixedThreadPool(noThreads > 0 ? noThreads:1 );
+    	}
         File f = new File(scdbgPath);
         if (!f.exists()) {
             throw new IllegalArgumentException("Path to scdbg binary does not exist: " + scdbgPath);
@@ -142,29 +140,29 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
     }
 
     @Override
-    public InputStream executeForOffsets(String filename, File localTemp) throws ResourceException {
+    public final InputStream executeForOffsets(String filename, File localTemp) throws ResourceException {
         return execute(getCommandLineForScan(filename), localTemp);
     }
 
     @Override
-    public InputStream executeWithOffset(String filename, File graphFile, String offset, File localTemp) throws ResourceException {
+    public final InputStream executeWithOffset(String filename, File graphFile, String offset, File localTemp) throws ResourceException {
         return execute(getCommandLineForAnalyse(filename, graphFile.getAbsolutePath(), offset), localTemp);
     }
 
     private static <T> T timedCall(Callable<T> c, long timeout, TimeUnit timeUnit)
             throws InterruptedException, ExecutionException, TimeoutException {
         FutureTask<T> task = new FutureTask<T>(c);
-        THREAD_POOL.execute(task);
+        threadPool.execute(task);
         return task.get(timeout, timeUnit);
     }
 
     private InputStream execute(String commandLine, File localTmp) throws ResourceException {
-        LOGGER.debug("Executing {}", (Object) commandLine);
+        LOGGER.debug("Executing {}", commandLine);
         try {
             long timeout = 0;
-            
+
             try {
-                timeout = (scdbgTimeout != null && scdbgTimeout.length() > 0) ? Integer.parseInt(scdbgTimeout) : DEFAULT_EXECUTION_TIMEOUT;
+                timeout = scdbgTimeout != null && scdbgTimeout.length() > 0 ? Integer.parseInt(scdbgTimeout) : DEFAULT_EXECUTION_TIMEOUT;
             } catch (NumberFormatException e) {
                 timeout = DEFAULT_EXECUTION_TIMEOUT;
             }
@@ -188,16 +186,13 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
 		return scdbgPath + " /a /getpc /f " + filename.replaceAll("/", "//");
 	}
 
-	private String getCommandLineForAnalyse(String filename,
- String graphFile,
-			String offset) {
-		return scdbgPath + " /nc /G " + graphFile.replaceAll("/", "//")
-				+ " /mm /mdll /a /d /hex /foff " + offset + " /f "
-				+ filename.replaceAll("/", "//");
+	private String getCommandLineForAnalyse(String filename, String graphFile, String offset) {
+		return scdbgPath + " /nc /G " + graphFile.replaceAll("/", "//") + " /mm /mdll /a /d /hex /foff " + offset
+				+ " /f " + filename.replaceAll("/", "//");
 	}
 
 	@Override
-	public void setMemoryLimit(int memoryLimitInMb) {
+	public final void setMemoryLimit(int memoryLimitInMb) {
 		this.memoryLimitInMb = memoryLimitInMb;
 	}
 }

@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -22,28 +22,28 @@ import pl.nask.hsn2.CommandLineParams;
 
 public class ScCommandLineParams extends CommandLineParams {
 
-    private final static OptionNameWrapper SCDBG_PATH = new OptionNameWrapper("scdbg", "scdbgPath");
-    private final static OptionNameWrapper SCDBG_TIMEOUT = new OptionNameWrapper("timeout", "scdbgTimeout");
+    private static final OptionNameWrapper SCDBG_PATH = new OptionNameWrapper("scdbg", "scdbgPath");
+    private static final OptionNameWrapper SCDBG_TIMEOUT = new OptionNameWrapper("timeout", "scdbgTimeout");
 
     @Override
-    public void initOptions() {
+    public final void initOptions() {
         super.initOptions();
         addOption(SCDBG_PATH, "path", "Full path to scdbg binary");
         addOption(SCDBG_TIMEOUT, "timeout", "Scdbg execution timeout");
     }
 
     @Override
-    public void initDefaults() {
+    public final void initDefaults() {
         super.initDefaults();
         setDefaultValue(SCDBG_TIMEOUT, "60");
         setDefaultServiceNameAndQueueName("shell-scdbg");
     }
 
-    public String getScdbgPath() {
+    public final String getScdbgPath() {
         return getOptionValue(SCDBG_PATH);
     }
 
-    public String getScdbgTimeout() {
+    public final String getScdbgTimeout() {
         return getOptionValue(SCDBG_TIMEOUT);
     }
 }

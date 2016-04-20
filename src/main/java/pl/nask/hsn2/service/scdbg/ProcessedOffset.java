@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -23,6 +23,7 @@ import java.io.File;
 import java.util.List;
 
 public class ProcessedOffset {
+	private static final int INT_RADIX = 16;
 
     private File dumpFile;
     private File graphFile;
@@ -41,31 +42,31 @@ public class ProcessedOffset {
         urls = outgoingUrls;
     }
 
-    public boolean hasMemoryDump() {
+    public final boolean hasMemoryDump() {
         return dumpFile != null && dumpFile.exists();
     }
 
-    public String getOutput() {
+    public final String getOutput() {
         return output;
     }
 
-    public List<String> getOutgoingUrls() {
+    public final List<String> getOutgoingUrls() {
         return urls;
     }
 
-    public boolean hasGraphFile() {
+    public final boolean hasGraphFile() {
         return graphFile != null && graphFile.exists();
     }
 
-    public int getOffsetAsInt() {
-        return Integer.parseInt(offset.getOffset().substring(2), 16);
+    public final int getOffsetAsInt() {
+        return Integer.parseInt(offset.getOffset().substring(2), INT_RADIX);
     }
 
-    public File getDumpFile() {
+    public final File getDumpFile() {
         return dumpFile;
     }
 
-    public File getGraphFile() {
+    public final File getGraphFile() {
         return graphFile;
     }
 }

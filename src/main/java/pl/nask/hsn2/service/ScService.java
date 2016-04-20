@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -20,7 +20,6 @@
 package pl.nask.hsn2.service;
 
 import java.io.File;
-
 import org.apache.commons.daemon.DaemonContext;
 import org.apache.commons.daemon.DaemonController;
 import org.apache.commons.daemon.DaemonInitException;
@@ -35,7 +34,7 @@ import pl.nask.hsn2.task.TaskFactory;
 
 public final class ScService extends ServiceMain {
 
-    public static void main(final String[] args) throws DaemonInitException, Exception {
+    public static void main(final String[] args) throws DaemonInitException {
     	ScService scs = new ScService();
     	scs.init(new DaemonContext() {
 			public DaemonController getController() {
@@ -62,10 +61,10 @@ public final class ScService extends ServiceMain {
 	        return ScTaskFactory.class;
 		}
 		catch(ResourceException e){
-			throw new RuntimeException(e);
+			throw new IllegalStateException(e);
 		}
 	}
-	
+
 	@Override
 	protected CommandLineParams newCommandLineParams() {
 		return new ScCommandLineParams();

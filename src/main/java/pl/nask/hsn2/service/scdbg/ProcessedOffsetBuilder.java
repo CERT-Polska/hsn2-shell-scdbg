@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
+ *
  * This file is part of HoneySpider Network 2.0.
- * 
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -31,7 +31,7 @@ import org.apache.commons.io.FileUtils;
 import pl.nask.hsn2.ResourceException;
 
 public class ProcessedOffsetBuilder {
-    private final static Pattern dumpPattern = Pattern.compile("Change found at .* dumping to (.*)");
+    private static final Pattern DUMP_PATTERN = Pattern.compile("Change found at .* dumping to (.*)");
 
     private StringBuilder outputBuilder = new StringBuilder();
     private Offset offset;
@@ -45,23 +45,23 @@ public class ProcessedOffsetBuilder {
         this.localTempDir = localTempDir;
     }
 
-    public void setGraphFile(File graphFile) {
+    public final void setGraphFile(File graphFile) {
         this.graphFile = graphFile;
     }
 
-    public void setDumpFile(File dumpFile) {
+    public final void setDumpFile(File dumpFile) {
         this.dumpFile = dumpFile;
     }
 
-    public ProcessedOffset build() {
+    public final ProcessedOffset build() {
         return new ProcessedOffset(offset, outputBuilder.toString(), graphFile, dumpFile, outgoingUrls);
     }
 
-    public void handleOutputLine(String line) throws ResourceException {
+    public final void handleOutputLine(String line) throws ResourceException {
         tryToMatchDumpPattern(line);
         tryToMatchUrlPattern(line);
 
-        this.outputBuilder.append(line).append("\n");
+        outputBuilder.append(line).append("\n");
     }
 
     private void tryToMatchUrlPattern(String line) {
@@ -82,7 +82,7 @@ public class ProcessedOffsetBuilder {
     }
 
     private void tryToMatchDumpPattern(String line) throws ResourceException {
-        Matcher matcher = dumpPattern.matcher(line);
+        Matcher matcher = DUMP_PATTERN.matcher(line);
         if (matcher.matches()) {
             try {
                 String originalDumpFilePath = matcher.group(1);
