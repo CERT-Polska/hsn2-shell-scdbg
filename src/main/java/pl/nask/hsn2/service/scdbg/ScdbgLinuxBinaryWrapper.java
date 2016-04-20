@@ -91,13 +91,11 @@ public class ScdbgLinuxBinaryWrapper implements ScdbgWrapper {
     private static final int DEFAULT_EXECUTION_TIMEOUT = 60;
     private final String scdbgPath;
     private final String scdbgTimeout;
-    private static ExecutorService threadPool = null;
+    private static ExecutorService threadPool;
     private int memoryLimitInMb;
 
-    public ScdbgLinuxBinaryWrapper(String scdbgPath, String scdbgTimeout,int noThreads) throws ResourceException {
-    	if (threadPool == null) {
-    		threadPool = Executors.newFixedThreadPool(noThreads > 0 ? noThreads:1 );
-    	}
+	public ScdbgLinuxBinaryWrapper(String scdbgPath, String scdbgTimeout, int noThreads) throws ResourceException {
+		threadPool = Executors.newFixedThreadPool(noThreads > 0 ? noThreads : 1);
         File f = new File(scdbgPath);
         if (!f.exists()) {
             throw new IllegalArgumentException("Path to scdbg binary does not exist: " + scdbgPath);
