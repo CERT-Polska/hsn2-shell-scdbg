@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
- * This file is part of HoneySpider Network 2.0.
- * 
+ *
+ * This file is part of HoneySpider Network 2.1.
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -29,17 +29,16 @@ import pl.nask.hsn2.wrappers.ParametersWrapper;
 
 public class ScTaskFactory implements TaskFactory {
 	private static final int SCDBG_MEMORY_LIMIT = 128;
-    private final ScdbgTool tool;
+    private static ScdbgTool tool;
 
-    public ScTaskFactory(ScdbgTool tool) {
-        this.tool = tool;
+    public static void prepereForAllThreads(ScdbgTool tool) {
+        ScTaskFactory.tool = tool;
     }
 
-    public Task newTask(TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data)
+    public final Task newTask(TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data)
             throws ParameterException {
     	int memLimit = parameters.getInt("scdbg_memory_limit", SCDBG_MEMORY_LIMIT);
     	tool.setMemoryLimit(memLimit);
-        return new ShellcodeTask(tool, jobContext, parameters, data);
+        return new ShellcodeTask(tool, jobContext, data);
     }
-
 }

@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
- * This file is part of HoneySpider Network 2.0.
- * 
+ *
+ * This file is part of HoneySpider Network 2.1.
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -22,7 +22,14 @@ package pl.nask.hsn2.service.fileutils;
 import java.io.File;
 import java.io.IOException;
 
-public class FileHelper {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public final class FileHelper {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileHelper.class);
+
+	private FileHelper() {}
 
     public static File createTempDir() throws IOException {
        return createTempDir(null);
@@ -32,9 +39,14 @@ public class FileHelper {
         File tmpFile = File.createTempFile("tmp", "", parentTmp);
         File tmpMainDir = tmpFile.getParentFile();
         String tmpDirname = tmpFile.getName() + ".d";
-        tmpFile.delete();
+        if (!tmpFile.delete()) {
+        	LOGGER.warn("Cannot delete temp file: {}", tmpFile.getName());
+        }
         File tmpDir = new File(tmpMainDir, tmpDirname);
-        tmpDir.mkdir();
+        if (!tmpDir.mkdir()) {
+        	LOGGER.error("Cannot create temp dir! {}", tmpDir.getName());
+        	throw new IllegalStateException("Cannot create temporary directory");
+        }
 
         return tmpDir;
     }

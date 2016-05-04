@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
- * This file is part of HoneySpider Network 2.0.
- * 
+ *
+ * This file is part of HoneySpider Network 2.1.
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -45,28 +45,25 @@ import pl.nask.hsn2.service.scdbg.ScdbgTool;
 import pl.nask.hsn2.service.scdbg.ScdbgToolResult;
 import pl.nask.hsn2.task.Task;
 import pl.nask.hsn2.wrappers.ObjectDataWrapper;
-import pl.nask.hsn2.wrappers.ParametersWrapper;
 
 public class ShellcodeTask implements Task {
-    private final static Logger LOGGER = LoggerFactory.getLogger(ShellcodeTask.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShellcodeTask.class);
 
     private final ScdbgTool tool;
     private Long fileId;
     private final TaskContext jobContext;
-    private final ObjectDataWrapper data;
 
-    public ShellcodeTask(ScdbgTool tool, TaskContext jobContext, ParametersWrapper parameters, ObjectDataWrapper data) {
+    public ShellcodeTask(ScdbgTool tool, TaskContext jobContext, ObjectDataWrapper data) {
         this.tool = tool;
         this.jobContext = jobContext;
-        this.data = data;
-        this.fileId = data.getReferenceId("content");
+        fileId = data.getReferenceId("content");
     }
 
-    public boolean takesMuchTime() {
+    public final boolean takesMuchTime() {
         return fileId != null;
     }
 
-    public void process() throws ParameterException, ResourceException, StorageException {
+    public final void process() throws ParameterException, ResourceException, StorageException {
         if (fileId == null) {
             LOGGER.info("Task skipped");
         } else {
@@ -96,6 +93,7 @@ public class ShellcodeTask implements Task {
     private void deleteTaskTempDir(File dir) {
         if (dir != null) {
             try {
+            	LOGGER.debug("Deleting tmp dir: {}",dir.getAbsolutePath());
                 FileUtils.deleteDirectory(dir);
             } catch (IOException e) {
                LOGGER.warn("Could not delete a task temp directory", e);
@@ -116,28 +114,36 @@ public class ShellcodeTask implements Task {
     }
 
     private long saveResultsInDataStore(ScdbgToolResult res) throws StorageException, ResourceException {
-        ScdbgResultList.Builder scdbgResultListMessage = ScdbgResultList.newBuilder();
+    	ScdbgResultList.Builder scdbgResultListMessage = ScdbgResultList.newBuilder();
 
-        for (ProcessedOffset offset: res.getProcessedOffsets()) {
-            try {
-                Long dumpFileId = null;
-                if (offset.hasMemoryDump()) {
-                    dumpFileId = jobContext.saveInDataStore(new FileInputStream(offset.getDumpFile()));
-                }
+    	for (ProcessedOffset offset: res.getProcessedOffsets()) {
+    		try {
+    			Long dumpFileId = null;
+    			if (offset.hasMemoryDump()) {
+    				dumpFileId = jobContext.saveInDataStore(new FileInputStream(offset.getDumpFile()));
+    			}
 
-                Long graphFileId = null;
-                if (offset.hasGraphFile()) {
-                    graphFileId = jobContext.saveInDataStore(new FileInputStream(offset.getGraphFile()));
-                }
+    			Long graphFileId = null;
+    			if (offset.hasGraphFile()) {
+    				graphFileId = jobContext.saveInDataStore(new FileInputStream(offset.getGraphFile()));
+    			}
 
-                ScdbgResult scdbgResultMessage = makeScdbgMessage(offset.getOffsetAsInt(), offset.getOutput(), dumpFileId, graphFileId);
-                scdbgResultListMessage.addResults(scdbgResultMessage);
-            } catch (FileNotFoundException e) {
-                throw new ResourceException("File not found", e);
-            }
-        }
+    			ScdbgResult scdbgResultMessage = makeScdbgMessage(offset.getOffsetAsInt(), offset.getOutput(), dumpFileId, graphFileId);
+    			scdbgResultListMessage.addResults(scdbgResultMessage);
+    			File f = offset.getGraphFile();
+    			if ( f != null && f.exists()) {
+    				File pd = f.getParentFile();
+    				FileUtils.deleteDirectory(pd);
+    				LOGGER.debug("TMP dir deleted:{}.",pd.getAbsolutePath());
+    			}
+    		} catch (FileNotFoundException e) {
+    			throw new ResourceException("File not found", e);
+    		} catch (IOException e) {
+    			LOGGER.warn("Couldn't delete tmp dir.",e);
+    		}
+    	}
 
-        return jobContext.saveInDataStore(scdbgResultListMessage.build().toByteArray());
+    	return jobContext.saveInDataStore(scdbgResultListMessage.build().toByteArray());
     }
 
     private ScdbgResult makeScdbgMessage(int offsetAsInt, String output, Long dumpFileId, Long graphFileId) {
@@ -162,7 +168,7 @@ public class ShellcodeTask implements Task {
             is = jobContext.getFileAsInputStream(fileId);
             fos = new FileOutputStream(tmpFile);
             IOUtils.copy(is, fos);
-            LOGGER.debug("Downloaded file (size={}) in {} ms", FileUtils.byteCountToDisplaySize(tmpFile.length()), System.currentTimeMillis() - downloadTimeStart);
+            LOGGER.debug("Downloaded {} ({}) in {} ms",new Object[]{tmpFile.getName(), FileUtils.byteCountToDisplaySize(tmpFile.length()), System.currentTimeMillis() - downloadTimeStart});
             return tmpFile;
         } catch (IOException e) {
             throw new ResourceException("Cannot create temporary file", e);

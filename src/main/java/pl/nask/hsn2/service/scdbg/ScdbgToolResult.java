@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
- * This file is part of HoneySpider Network 2.0.
- * 
+ *
+ * This file is part of HoneySpider Network 2.1.
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -43,20 +43,20 @@ public class ScdbgToolResult {
         }
     }
 
-    public int getNumberOfShellcodes() {
+    public final int getNumberOfShellcodes() {
         return offsets.size();
     }
 
 
-    public List<String> getOutgoingUrls() {
+    public final List<String> getOutgoingUrls() {
         return outgoingUrls;
     }
 
-    List<Offset> getOffsets() {
+    final List<Offset> getOffsets() {
         return offsets;
     }
 
-    public List<ProcessedOffset> getProcessedOffsets() {
+    public final List<ProcessedOffset> getProcessedOffsets() {
         return processedOffsets;
     }
 }

@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
- * This file is part of HoneySpider Network 2.0.
- * 
+ *
+ * This file is part of HoneySpider Network 2.1.
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -20,28 +20,53 @@
 package pl.nask.hsn2.service;
 
 import java.io.File;
+import org.apache.commons.daemon.DaemonContext;
+import org.apache.commons.daemon.DaemonController;
+import org.apache.commons.daemon.DaemonInitException;
 
-import pl.nask.hsn2.GenericService;
+import pl.nask.hsn2.CommandLineParams;
+import pl.nask.hsn2.ResourceException;
+import pl.nask.hsn2.ServiceMain;
 import pl.nask.hsn2.service.scdbg.ScdbgLinuxBinaryWrapper;
 import pl.nask.hsn2.service.scdbg.ScdbgTool;
 import pl.nask.hsn2.service.scdbg.ScdbgWrapper;
+import pl.nask.hsn2.task.TaskFactory;
 
-public final class ScService {
+public final class ScService extends ServiceMain {
 
-    private ScService() {}
-
-    public static void main(String[] args) throws InterruptedException {
-        ScCommandLineParams cmd = new ScCommandLineParams();
-        
-        cmd.parseParams(args);
-
-        ScdbgWrapper wrapper = new ScdbgLinuxBinaryWrapper(cmd.getScdbgPath(), cmd.getScdbgTimeout(),cmd.getMaxThreads());
-
-        ScdbgTool tool = new ScdbgTool(wrapper, new File(System.getProperty("java.io.tmpdir")));
-
-        GenericService service = new GenericService(new ScTaskFactory(tool), cmd.getMaxThreads(), cmd.getRbtCommonExchangeName());
-
-        cmd.applyArguments(service);
-        service.run();
+    public static void main(final String[] args) throws DaemonInitException {
+    	ScService scs = new ScService();
+    	scs.init(new DaemonContext() {
+			public DaemonController getController() {
+				return null;
+			}
+			public String[] getArguments() {
+				return args;
+			}
+		});
+    	scs.start();
     }
+
+	@Override
+	protected void prepareService() {
+	}
+
+	@Override
+	protected Class<? extends TaskFactory> initializeTaskFactory() {
+		try {
+			ScCommandLineParams cmd = (ScCommandLineParams)getCommandLineParams();
+			ScdbgWrapper wrapper = new ScdbgLinuxBinaryWrapper(cmd.getScdbgPath(), cmd.getScdbgTimeout(),cmd.getMaxThreads());
+	        ScdbgTool scdbgTool = new ScdbgTool(wrapper, new File(System.getProperty("java.io.tmpdir")));
+	        ScTaskFactory.prepereForAllThreads(scdbgTool);
+	        return ScTaskFactory.class;
+		}
+		catch(ResourceException e){
+			throw new IllegalStateException(e);
+		}
+	}
+
+	@Override
+	protected CommandLineParams newCommandLineParams() {
+		return new ScCommandLineParams();
+	}
 }

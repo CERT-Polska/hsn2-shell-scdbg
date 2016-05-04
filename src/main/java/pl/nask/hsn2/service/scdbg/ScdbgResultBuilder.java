@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
- * This file is part of HoneySpider Network 2.0.
- * 
+ *
+ * This file is part of HoneySpider Network 2.1.
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
 import pl.nask.hsn2.ResourceException;
 
 public class ScdbgResultBuilder {
-    private final static Logger LOGGER = LoggerFactory.getLogger(ScdbgResultBuilder.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ScdbgResultBuilder.class);
 
     /*
      * pattern for:
@@ -48,11 +48,11 @@ public class ScdbgResultBuilder {
     private List<ProcessedOffset> processedOffsets = new ArrayList<ProcessedOffset>();
     private ProcessedOffsetBuilder currentOffset;
 
-    public ScdbgToolResult build() {
+    public final ScdbgToolResult build() {
         return new ScdbgToolResult(offsets, processedOffsets);
     }
 
-    public void scanOutputLine(String line) throws ResourceException {
+    public final void scanOutputLine(String line) throws ResourceException {
         LOGGER.debug("Got output: {}", line);
         if (currentOffset == null) {
             tryToMatchOffsetPattern(line);
@@ -61,7 +61,7 @@ public class ScdbgResultBuilder {
         }
     }
 
-    boolean tryToMatchOffsetPattern(String line) {
+    final boolean tryToMatchOffsetPattern(String line) {
         String found = match(lineWithOffsetPattern, line, 1);
         if (found == null) {
             found = match(lineWithDetectedShellcodePattern, line, 1);
@@ -85,8 +85,7 @@ public class ScdbgResultBuilder {
         }
     }
 
-
-    boolean tryToMatchDetectedShellcodePattern(String line) {
+    final boolean tryToMatchDetectedShellcodePattern(String line) {
         Matcher matcher = lineWithDetectedShellcodePattern.matcher(line);
         if (matcher.matches()) {
             String offset = matcher.group(1);
@@ -97,18 +96,17 @@ public class ScdbgResultBuilder {
         }
     }
 
-
-    boolean tryToMatchUrlPattern(String line) {
+    final boolean tryToMatchUrlPattern(String line) {
         return false;
     }
-    public void startOffsetProcessing(Offset offset, File graphFile, File localTempDir) {
+
+    public final void startOffsetProcessing(Offset offset, File graphFile, File localTempDir) {
         ProcessedOffsetBuilder builder = new ProcessedOffsetBuilder(offset, localTempDir);
         builder.setGraphFile(graphFile);
         currentOffset = builder;
     }
 
-
-    public void endOffsetProcessing() {
+    public final void endOffsetProcessing() {
         ProcessedOffset offset = currentOffset.build();
         currentOffset = null;
         processedOffsets.add(offset);

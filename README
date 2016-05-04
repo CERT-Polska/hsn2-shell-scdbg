@@ -1,12 +1,16 @@
 HSN2 Shell-scdbg (hsn2-shell-scdbg)
 
 
-The HSN2 Shell-scdbg service performs run-time shellcode analysis, 
-using scdbg <https://github.com/dzzie/SCDBG> tool.
+The HSN2 Shell-scdbg service performs run-time shellcode analysis,
+using the scdbg <https://github.com/dzzie/SCDBG> tool.
+
+
+Dependencies needed to build the package:
+libemu2
 
 
 
-This repository is a part of bigger project: Honeyspider Network 2.0.
+This repository is a part of bigger project: Honeyspider Network 2.1.
 Project bundle is located at: https://github.com/CERT-Polska/hsn2-bundle.
 More information is available on the project's website:
 http://www.honeyspider.net

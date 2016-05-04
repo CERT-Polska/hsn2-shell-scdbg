@@ -1,8 +1,13 @@
-Package: hsn2-shell-scdbg
-Version: {VER}
-Section: unknown
+Source: hsn2-shell-scdbg
+Section: java
 Priority: optional
-Architecture: amd64
-Maintainer: Pawel Jacewicz <pawel.jacewicz@cert.pl>
+Maintainer: CERT Polska <info@cert.pl>
+Build-Depends: debhelper (>= 8.0.0), maven
+Standards-Version: 3.9.3
+
+Package: hsn2-shell-scdbg
+Architecture: i386 amd64
+Depends: ${misc:Depends}, java-wrappers, openjdk-7-jre, jsvc, libemu2, hsn2-commons-debian
+Homepage: http://www.honeyspider.net
 Description: HSN2 Shellcode Analyzer Service
-Distribution: {DEBIAN_DIST}
+ Performs run-time shellcode analysis, using the scdbg tool.

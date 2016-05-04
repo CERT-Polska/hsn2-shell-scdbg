@@ -1,7 +1,7 @@
 /*
  * Copyright (c) NASK, NCSC
  * 
- * This file is part of HoneySpider Network 2.0.
+ * This file is part of HoneySpider Network 2.1.
  * 
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,9 +36,7 @@ import org.testng.annotations.Test;
 
 import pl.nask.hsn2.ResourceException;
 
-@Test
 public class ScdbgMockTest {
-
     private File tmpDir;
     private File bPdfFile;
     private File tPdfFile;
@@ -81,7 +79,7 @@ public class ScdbgMockTest {
         builder = new ScdbgResultBuilder();
     }
 
-    @Test
+    @Test(enabled=false)
     public void scanForOffsetsTest() throws ResourceException {
         tool.scanForOffsets(builder, bPdfFile.getAbsolutePath());
 
@@ -112,7 +110,7 @@ public class ScdbgMockTest {
         Assert.assertTrue(offset.getGraphFile() != null);
     }
 
-    @Test
+    @Test(enabled=false)
     public void scanOffsetWithDumpFile() throws ResourceException, FileNotFoundException, IOException {
         tool.scanOffset(builder, fileWithMemDump, new Offset("0x012c", "40c538"));
 

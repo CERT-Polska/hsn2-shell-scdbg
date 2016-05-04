@@ -1,8 +1,8 @@
 /*
  * Copyright (c) NASK, NCSC
- * 
- * This file is part of HoneySpider Network 2.0.
- * 
+ *
+ * This file is part of HoneySpider Network 2.1.
+ *
  * This is a free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -34,7 +34,7 @@ import pl.nask.hsn2.ResourceException;
 import pl.nask.hsn2.service.fileutils.FileHelper;
 
 public class ScdbgTool {
-    private final static Logger LOGGER = LoggerFactory.getLogger(ScdbgTool.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ScdbgTool.class);
 
     private final File tmpDir;
     private final ScdbgWrapper scdbg;
@@ -44,7 +44,7 @@ public class ScdbgTool {
         this.tmpDir = tmpDir;
     }
 
-    public ScdbgToolResult runWithFile(String filename) throws IOException, ResourceException {
+    public final ScdbgToolResult runWithFile(String filename) throws IOException, ResourceException {
         LOGGER.info("Scanning file {}", filename);
         ScdbgResultBuilder builder = new ScdbgResultBuilder();
         scanForOffsets(builder, filename);
@@ -58,7 +58,7 @@ public class ScdbgTool {
     }
 
 
-    void scanOffset(ScdbgResultBuilder builder, String filename, Offset offset) throws ResourceException {
+    final void scanOffset(ScdbgResultBuilder builder, String filename, Offset offset) throws ResourceException {
         LOGGER.debug("Scanning file {} with offset {}", filename, offset.getOffset());
         File localTemp;
         try {
@@ -70,6 +70,7 @@ public class ScdbgTool {
         File graphFile;
         try {
             graphFile = File.createTempFile("scdbg-", "-graphFile", localTemp);
+            LOGGER.debug("Created tmp graph file:{}",graphFile.getAbsolutePath());
         } catch (IOException e) {
             throw new ResourceException("Error creating tmp graphFile", e);
         }
@@ -96,13 +97,13 @@ public class ScdbgTool {
         }
     }
 
-    void scanForOffsets(ScdbgResultBuilder builder, String filename) throws ResourceException  {
-        LOGGER.debug("Scanning file {} for offsets");
+    final void scanForOffsets(ScdbgResultBuilder builder, String filename) throws ResourceException  {
+        LOGGER.debug("Scanning file {} for offsets",filename);
         InputStream input = scdbg.executeForOffsets(filename, tmpDir);
         processInput(builder, input);
     }
 
-	public void setMemoryLimit(int memoryLimitInMb) {
+	public final void setMemoryLimit(int memoryLimitInMb) {
 		scdbg.setMemoryLimit(memoryLimitInMb);
 	}
 }

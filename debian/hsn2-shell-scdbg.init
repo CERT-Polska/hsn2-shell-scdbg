@@ -1,0 +1,32 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:               hsn2-shell-scdbg
+# Required-Start:
+# Required-Stop:
+# Default-Start:          2 3 4 5
+# Default-Stop:           0 1 6
+# Short-Description:      Start/Stop the HSN2 Shellcode Analyzer
+# Description:            Start/Stop the HSN2 Shellcode Analyzer Service daemon.
+### END INIT INFO
+
+NAME="HSN2 Shellcode Analyzer"
+HSN2_COMPONENT="shell-scdbg"
+MAINCLASS="pl.nask.hsn2.service.ScService"
+CONFFILE=/etc/hsn2/shell-scdbg.conf
+
+#HSN2_JMX_PORT=1111
+
+. /lib/hsn2/init-functions-java
+
+prepare_start() {
+	HSN2_COMPONENT_PARAMS="--connector $BROKER_ADDRESS \
+		--dataStore http://$DATASTORE_ADDRESS \
+		--maxThreads $MAX_THREADS \
+		--scdbgPath ${HSN2_COMPONENT_HOME}/lib/scdbg \
+		--logLevel ${LOG_LEVEL}"
+}
+
+choose_java_service_action $@
+
+exit $?

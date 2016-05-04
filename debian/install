@@ -1,0 +1,2 @@
+build/shell-scdbg /opt/hsn2/
+shell-scdbg.conf /etc/hsn2/
